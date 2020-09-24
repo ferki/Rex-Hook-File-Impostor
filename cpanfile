@@ -3,7 +3,6 @@
 
 requires "File::Basename" => "0";
 requires "File::Spec" => "0";
-requires "File::Temp" => "0";
 requires "Rex" => "1.012";
 requires "Rex::Hook" => "0";
 requires "perl" => "5.012";
@@ -12,6 +11,7 @@ requires "warnings" => "0";
 
 on 'test' => sub {
   requires "Carp" => "0";
+  requires "File::Temp" => "0";
   requires "Rex::Commands::File" => "0";
   requires "Test2::V0" => "0";
   requires "Test::File" => "1.443";

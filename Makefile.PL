@@ -19,7 +19,6 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "File::Basename" => 0,
     "File::Spec" => 0,
-    "File::Temp" => 0,
     "Rex" => "1.012",
     "Rex::Hook" => 0,
     "strict" => 0,
@@ -27,6 +26,7 @@ my %WriteMakefileArgs = (
   },
   "TEST_REQUIRES" => {
     "Carp" => 0,
+    "File::Temp" => 0,
     "Rex::Commands::File" => 0,
     "Test2::V0" => 0,
     "Test::File" => "1.443",

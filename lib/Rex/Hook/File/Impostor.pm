@@ -10,7 +10,6 @@ our $VERSION = '9999';
 
 use File::Basename;
 use File::Spec;
-use File::Temp;
 use Rex 1.012 -base;
 use Rex::Hook;
 
