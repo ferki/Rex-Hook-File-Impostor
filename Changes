@@ -1,8 +1,6 @@
 Revision history for Rex-Hook-File-Impostor
- 
-{{$NEXT}}
- - Initial release
 
+{{$NEXT}}
  [API CHANGES]
 
  [BUG FIXES]
@@ -10,3 +8,6 @@ Revision history for Rex-Hook-File-Impostor
  [DOCUMENTATION]
 
  [ENHANCEMENTS]
+
+v0.1.0 2020-09-24T13:40:04Z
+ - Initial release
