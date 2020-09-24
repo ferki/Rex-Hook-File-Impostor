@@ -1,18 +1,43 @@
 package Rex::Hook::File::Impostor;
 
-# ABSTRACT:
+# ABSTRACT: execute file management commands of Rex on a copy instead of the original
 
-use 5.010;
+use 5.012;
 use strict;
 use warnings;
 
 our $VERSION = '9999';
 
+use File::Basename;
+use File::Spec;
+use File::Temp;
+use Rex 1.012 -base;
+use Rex::Hook;
+
+register_function_hooks { before => { file => \&copy_file, }, };
+
+sub copy_file {
+    my ( $original_file, @opts ) = @_;
+
+    my $impostor_file = get_impostor_for($original_file);
+
+    Rex::Logger::debug("Copying $original_file to $impostor_file");
+    cp $original_file, $impostor_file;
+
+    return $impostor_file, @opts;
+}
+
+sub get_impostor_for {
+    my $file = shift;
+
+    return File::Spec->catfile( Rex::Config->get_tmp_dir(), basename($file) );
+}
+
 1;
 
 __END__
 
-=for :stopwords CPAN
+=for :stopwords CPAN sponsorware
 
 =head1 SYNOPSIS
 
@@ -20,13 +45,23 @@ __END__
 
 =head1 DESCRIPTION
 
+This module lets Rex execute file management commands on a copy of the file instead of the original one.
+
+This could be particularly useful when it is loaded conditionally to be combined with other modules. For example together with L<Rex::Hook::File::Diff|https://metacpan.org/pod/Rex::Hook::File::Diff>, it could be used to show a diff of file changes without actually changing the original file contents.
+
+It works by installing a L<before hook|https://metacpan.org/pod/Rex::Commands::File#Hooks> for file commands, which makes a copy of the original file into a temporary directory, and then overrides the original arguments of the L<file commands|https://metacpan.org/pod/Rex::Commands::File#file>.
+
 =head1 DIAGNOSTICS
 
 This module does not do any error checking (yet).
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-This module does not require any configuration, nor does it use any environment variables.
+It uses the same temporary directory that is used by Rex. Therefore it can be configured with L<set_tmp_dir|https://metacpan.org/pod/Rex::Config#set_tmp_dir>:
+
+    Rex::Config->set_tmp_dir($tmp_dir);
+
+This module does not use any environment variables.
 
 =head1 DEPENDENCIES
 
