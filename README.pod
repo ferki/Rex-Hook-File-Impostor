@@ -1,0 +1,69 @@
+=pod
+
+=encoding UTF-8
+
+=for :stopwords Ferenc Erki CPAN sponsorware
+
+=head1 NAME
+
+Rex::Hook::File::Impostor - execute file management commands of Rex on a copy instead of the original
+
+=head1 VERSION
+
+version v0.0.0.1
+
+=head1 SYNOPSIS
+
+    use Rex::Hook::File::Impostor;
+
+=head1 DESCRIPTION
+
+This module lets Rex execute file management commands on a copy of the file instead of the original one.
+
+This could be particularly useful when it is loaded conditionally to be combined with other modules. For example together with L<Rex::Hook::File::Diff|https://metacpan.org/pod/Rex::Hook::File::Diff>, it could be used to show a diff of file changes without actually changing the original file contents.
+
+It works by installing a L<before hook|https://metacpan.org/pod/Rex::Commands::File#Hooks> for file commands, which makes a copy of the original file into a temporary directory, and then overrides the original arguments of the L<file commands|https://metacpan.org/pod/Rex::Commands::File#file>.
+
+=head1 DIAGNOSTICS
+
+This module does not do any error checking (yet).
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+It uses the same temporary directory that is used by Rex. Therefore it can be configured with L<set_tmp_dir|https://metacpan.org/pod/Rex::Config#set_tmp_dir>:
+
+    Rex::Config->set_tmp_dir($tmp_dir);
+
+This module does not use any environment variables.
+
+=head1 DEPENDENCIES
+
+See the included C<cpanfile>.
+
+=head1 INCOMPATIBILITIES
+
+There are no known incompatibilities with other modules.
+
+=head1 BUGS AND LIMITATIONS
+
+There are no known bugs. Make sure they are reported.
+
+=head1 AUTHOR
+
+Ferenc Erki <erkiferenc@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2020 by Ferenc Erki.
+
+This is free software, licensed under:
+
+  The GNU Lesser General Public License, Version 3, June 2007
+
+This software is also a sponsorware that is made available exclusively to my GitHub sponsors under the terms above in the initial development phase. It will be open sourced as soon as a goal of 4 sponsors is reached.
+
+Until then however, I kindly ask you to don't distribute beyond what is necessary for your own use cases, as it would render the sponsorware model pointless. Instead, I encourage you to convince those who are interested in it to sponsor this work further in order to re-release it to a wider audience as soon as possible.
+
+You are contributing towards a more sustainable open source ecosystem, and I'm grateful beyond measure for that. Thank you for your support!
+
+=cut
