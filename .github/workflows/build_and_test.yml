@@ -1,0 +1,115 @@
+---
+name: build and test
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+env:
+  PERL_CPANM_OPT: "--quiet --notest"
+  AUTHOR_TESTING: 1
+  EXTENDED_TESTING: 1
+  RELEASE_TESTING: 1
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: perldocker/perl-tester:latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Log perl version
+        run: perl -V
+      - name: Install Dist::Zilla
+        run: cpanm Dist::Zilla
+      - name: Install author dependencies
+        run: dzil authordeps | cpanm
+      - name: Install dependencies
+        run: dzil listdeps --develop | cpanm
+      - name: Run perlcritic
+        run: perlcritic lib t xt
+      - name: Build dist
+        run: dzil build --no-tgz --in build
+      - name: Run tests
+        run: |
+          cd build
+          prove --lib --recurse t xt
+      - name: Upload build results
+        uses: actions/upload-artifact@v2
+        with:
+          name: build_results
+          path: build
+
+  linux:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        perl-version:
+          - '5.10'
+          - 'latest'
+          - 'threaded'
+
+    container:
+      image: perl:${{ matrix.perl-version }}
+
+    steps:
+      - name: Download build results
+        uses: actions/download-artifact@v2
+        with:
+          name: build_results
+      - name: Log perl version
+        run: perl -V
+      - name: Install dependencies
+        run: cpanm --installdeps .
+      - name: Run tests
+        run: prove --lib --recurse t
+
+  macos:
+    needs: build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Download build results
+        uses: actions/download-artifact@v2
+        with:
+          name: build_results
+      - name: Set up PATH
+        run: |
+          export PERL_VERSION="$(brew list --versions perl | cut -d' ' -f 2)"
+          echo "##[add-path]/usr/local/Cellar/perl/${PERL_VERSION}/bin"
+      - name: Set up cpanm
+        run: brew install cpanm
+      - name: Log perl version
+        run: perl -V
+      - name: Install dependencies
+        run: cpanm --installdeps .
+      - name: Run tests
+        run: prove --lib --recurse t
+
+  windows:
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      - name: Download build results
+        uses: actions/download-artifact@v2
+        with:
+          name: build_results
+      - name: Set up PATH
+        run: echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
+      - name: Log perl version
+        run: perl -V
+      - name: Install dependencies
+        run: cpanm --installdeps .
+      - name: Run tests
+        run: prove --lib --recurse t
