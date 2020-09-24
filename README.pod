@@ -6,7 +6,7 @@
 
 =head1 NAME
 
-Rex::Hook::File::Impostor - execute file management commands of Rex on a copy instead of the original
+Rex::Hook::File::Impostor - execute Rex file management commands on a copy of the original file
 
 =head1 VERSION
 
