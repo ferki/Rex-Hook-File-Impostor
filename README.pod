@@ -60,10 +60,6 @@ This is free software, licensed under:
 
   The GNU Lesser General Public License, Version 3, June 2007
 
-This software is also a sponsorware that is made available exclusively to my GitHub sponsors under the terms above in the initial development phase. It will be open sourced as soon as a goal of 4 sponsors is reached.
-
-Until then however, I kindly ask you to don't distribute beyond what is necessary for your own use cases, as it would render the sponsorware model pointless. Instead, I encourage you to convince those who are interested in it to sponsor this work further in order to re-release it to a wider audience as soon as possible.
-
-You are contributing towards a more sustainable open source ecosystem, and I'm grateful beyond measure for that. Thank you for your support!
+Early versions of this software were L<sponsorware|https://github.com/sponsorware/docs>. Thanks to L<GitHub sponsors|https://github.com/sponsors/ferki>, it is now available to everyone!
 
 =cut
