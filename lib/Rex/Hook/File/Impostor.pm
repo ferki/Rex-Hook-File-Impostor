@@ -52,7 +52,7 @@ __END__
 
 =head1 DESCRIPTION
 
-This module lets Rex execute file management commands on a copy of the file instead of the original one.
+This module lets L<Rex|https://metacpan.org/pod/Rex> execute file management commands on a copy of the file instead of the original one.
 
 This could be particularly useful when it is loaded conditionally to be combined with other modules. For example together with L<Rex::Hook::File::Diff|https://metacpan.org/pod/Rex::Hook::File::Diff>, it could be used to show a diff of file changes without actually changing the original file contents.
 
