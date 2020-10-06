@@ -4,12 +4,17 @@ Revision history for Rex-Hook-File-Impostor
  [API CHANGES]
 
  [BUG FIXES]
+
+ [DOCUMENTATION]
+
+ [ENHANCEMENTS]
+
+v0.1.0.2 2020-10-06T13:53:11Z (TRIAL RELEASE)
+ [BUG FIXES]
  - Work around for file copy on Windows
 
  [DOCUMENTATION]
  - Add link to Rex
-
- [ENHANCEMENTS]
 
 v0.1.0.1 2020-09-28T17:57:46Z (TRIAL RELEASE)
  [DOCUMENTATION]
