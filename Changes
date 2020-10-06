@@ -4,11 +4,14 @@ Revision history for Rex-Hook-File-Impostor
  [API CHANGES]
 
  [BUG FIXES]
- - Use copy instead of xcopy on Windows
 
  [DOCUMENTATION]
 
  [ENHANCEMENTS]
+
+v0.1.0.3 2020-10-06T22:35:53Z (TRIAL RELEASE)
+ [BUG FIXES]
+ - Use copy instead of xcopy on Windows
 
 v0.1.0.2 2020-10-06T13:53:11Z (TRIAL RELEASE)
  [BUG FIXES]
