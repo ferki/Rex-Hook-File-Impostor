@@ -21,7 +21,14 @@ sub copy_file {
     my $impostor_file = get_impostor_for($original_file);
 
     Rex::Logger::debug("Copying $original_file to $impostor_file");
-    cp $original_file, $impostor_file;
+
+    if ( is_windows() ) {
+        my $exec = Rex::Interface::Exec->create;
+        $exec->exec("xcopy $original_file $impostor_file");
+    }
+    else {
+        cp $original_file, $impostor_file;
+    }
 
     return $impostor_file, @opts;
 }

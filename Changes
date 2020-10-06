@@ -4,6 +4,7 @@ Revision history for Rex-Hook-File-Impostor
  [API CHANGES]
 
  [BUG FIXES]
+ - Work around for file copy on Windows
 
  [DOCUMENTATION]
  - Add link to Rex
