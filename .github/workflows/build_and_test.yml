@@ -83,10 +83,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build_results
-      - name: Set up PATH
-        run: |
-          export PERL_VERSION="$(brew list --versions perl | cut -d' ' -f 2)"
-          echo "##[add-path]/usr/local/Cellar/perl/${PERL_VERSION}/bin"
       - name: Set up cpanm
         run: brew install cpanm
       - name: Log perl version
@@ -105,8 +101,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build_results
-      - name: Set up PATH
-        run: echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
       - name: Log perl version
         run: perl -V
       - name: Install dependencies
