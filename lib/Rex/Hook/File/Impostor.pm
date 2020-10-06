@@ -24,7 +24,7 @@ sub copy_file {
 
     if ( is_windows() ) {
         my $exec = Rex::Interface::Exec->create;
-        $exec->exec("xcopy $original_file $impostor_file");
+        $exec->exec("copy /v /y $original_file $impostor_file");
     }
     else {
         cp $original_file, $impostor_file;
