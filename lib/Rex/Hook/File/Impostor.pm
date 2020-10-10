@@ -41,7 +41,7 @@ sub get_impostor_for {
 
 sub get_impostor_dir {
     my $tmp_dir =
-      File::Spec->catfile( Rex::Config->get_tmp_dir(), 'rex_hook_file_pretend' );
+      File::Spec->catfile( Rex::Config->get_tmp_dir(), 'rex_hook_file_impostor' );
 
     mkdir $tmp_dir;
     return $tmp_dir;
