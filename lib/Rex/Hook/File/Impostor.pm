@@ -36,6 +36,9 @@ sub copy_file {
 sub get_impostor_for {
     my $file = shift;
 
+    die "get_impostor_for(): need a valid filepath"
+        unless defined $file;
+
     return File::Spec->catfile( get_impostor_dir(), basename($file) );
 }
 

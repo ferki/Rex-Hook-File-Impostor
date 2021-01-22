@@ -14,7 +14,10 @@ use Rex::Hook::File::Impostor;
 use Test2::V0;
 use Test::File 1.443;
 
-plan tests => 9;
+plan tests => 10;
+
+eval { Rex::Hook::File::Impostor::get_impostor_for() };
+like($@, qr/get_impostor_for\(\): need a valid filepath/);
 
 my $original_file = File::Temp->new('original_XXXX')->filename();
 my $impostor_file = Rex::Hook::File::Impostor::get_impostor_for($original_file);
