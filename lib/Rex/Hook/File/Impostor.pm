@@ -3,7 +3,6 @@ package Rex::Hook::File::Impostor;
 # ABSTRACT: execute Rex file management commands on a copy of the original file
 
 use 5.012;
-use strict;
 use warnings;
 
 use File::Basename;
