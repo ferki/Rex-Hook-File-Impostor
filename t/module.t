@@ -5,14 +5,14 @@ use strict;
 use warnings;
 use autodie;
 
-our $VERSION = '9999';
-
 use Carp;
 use File::Temp;
 use Rex::Commands::File;
 use Rex::Hook::File::Impostor;
 use Test2::V0;
 use Test::File 1.443;
+
+our $VERSION = '9999';
 
 plan tests => 9;
 

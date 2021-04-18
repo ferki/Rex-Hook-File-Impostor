@@ -6,12 +6,12 @@ use 5.012;
 use strict;
 use warnings;
 
-our $VERSION = '9999';
-
 use File::Basename;
 use File::Spec;
 use Rex 1.012 -base;
 use Rex::Hook;
+
+our $VERSION = '9999';
 
 register_function_hooks { before => { file => \&copy_file, }, };
 
