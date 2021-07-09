@@ -7,7 +7,7 @@ use warnings;
 
 use File::Basename;
 use File::Spec;
-use Rex 1.012 -base;
+use Rex 1.013004 -base;
 use Rex::Hook;
 
 our $VERSION = '9999';
@@ -21,13 +21,7 @@ sub copy_file {
 
     Rex::Logger::debug("Copying $original_file to $impostor_file");
 
-    if ( is_windows() ) {
-        my $exec = Rex::Interface::Exec->create;
-        $exec->exec("copy /v /y $original_file $impostor_file");
-    }
-    else {
-        cp $original_file, $impostor_file;
-    }
+    cp $original_file, $impostor_file;
 
     return $impostor_file, @opts;
 }

@@ -8,6 +8,7 @@ Revision history for Rex-Hook-File-Impostor
  [DOCUMENTATION]
 
  [ENHANCEMENTS]
+ - Use built-in Rex logic for file copy
 
 v0.1.1 2020-10-14T12:38:43Z
  [BUG FIXES]
