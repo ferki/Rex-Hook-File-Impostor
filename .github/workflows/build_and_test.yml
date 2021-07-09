@@ -43,7 +43,7 @@ jobs:
       - name: Run tests
         run: |
           cd build
-          prove --lib --recurse t xt
+          prove --timer --lib --recurse --jobs $(nproc) --shuffle t xt
       - name: Upload build results
         uses: actions/upload-artifact@v2
         with:
@@ -74,7 +74,7 @@ jobs:
       - name: Install dependencies
         run: cpanm --installdeps .
       - name: Run tests
-        run: prove --lib --recurse t
+        run: prove --timer --lib --recurse --jobs $(nproc) --shuffle t
 
   macos:
     needs: build
@@ -92,7 +92,7 @@ jobs:
       - name: Install dependencies
         run: cpanm --installdeps .
       - name: Run tests
-        run: prove --lib --recurse t
+        run: prove --timer --lib --recurse --jobs $(sysctl -n hw.ncpu) --shuffle t
 
   windows:
     needs: build
@@ -108,4 +108,4 @@ jobs:
       - name: Install dependencies
         run: cpanm --installdeps .
       - name: Run tests
-        run: prove --lib --recurse t
+        run: prove --timer --lib --recurse --jobs $(nproc) --shuffle t
