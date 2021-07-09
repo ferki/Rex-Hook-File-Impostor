@@ -40,10 +40,20 @@ jobs:
         run: perlcritic lib t xt
       - name: Build dist
         run: dzil build --no-tgz --in build
+      - name: Install Devel::Cover::Report::Coveralls
+        run: cpanm Devel::Cover::Report::Coveralls
       - name: Run tests
         run: |
           cd build
-          prove --timer --lib --recurse --jobs $(nproc) --shuffle t xt
+          prove --timer --lib --recurse --jobs $(nproc) --shuffle xt
+          HARNESS_PERL_SWITCHES=-MDevel::Cover=+ignore,^t/ prove --timer --lib --recurse --jobs $(nproc) --shuffle t/
+      - name: Report coverage info to Coveralls
+        run: |
+          cd build
+          cover -report coveralls
+          rm -rf cover_db
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload build results
         uses: actions/upload-artifact@v2
         with:
