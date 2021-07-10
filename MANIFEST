@@ -11,6 +11,7 @@ README
 README.pod
 cpanfile
 lib/Rex/Hook/File/Impostor.pm
+t/impostor_path.t
 t/module.t
 weaver.ini
 xt/author/00-compile.t
