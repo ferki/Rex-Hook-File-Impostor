@@ -5,10 +5,13 @@ package Rex::Hook::File::Impostor;
 use 5.012;
 use warnings;
 
+use Digest::MD5;
+use English qw( -no_match_vars );
 use File::Basename;
 use File::Spec;
 use Rex 1.013004 -base;
 use Rex::Hook;
+use Sys::Hostname;
 
 our $VERSION = '9999';
 
@@ -34,8 +37,15 @@ sub get_impostor_for {
 }
 
 sub get_impostor_directory {
-    my $tmp_dir =
-      File::Spec->catfile( Rex::Config->get_tmp_dir(), 'rex_hook_file_impostor' );
+    my $hasher = Digest::MD5->new();
+
+    $hasher->add(hostname);
+    $hasher->add($PID);
+
+    my $unique_id = $hasher->hexdigest();
+
+    my $tmp_dir = File::Spec->catfile( Rex::Config->get_tmp_dir(),
+        'rex_hook_file_impostor', $unique_id );
 
     mkdir $tmp_dir;
     return $tmp_dir;
