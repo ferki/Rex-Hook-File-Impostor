@@ -17,7 +17,7 @@ plan tests => 9;
 
 my $original_file = File::Temp->new('original_XXXX')->filename();
 my $impostor_file = Rex::Hook::File::Impostor::get_impostor_for($original_file);
-my $impostor_dir  = Rex::Hook::File::Impostor::get_impostor_dir();
+my $impostor_dir  = Rex::Hook::File::Impostor::get_impostor_directory();
 
 my $original_content = 'original';
 my $impostor_content = 'impostor';

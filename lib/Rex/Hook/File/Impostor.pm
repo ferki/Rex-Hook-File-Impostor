@@ -29,10 +29,10 @@ sub copy_file {
 sub get_impostor_for {
     my $file = shift;
 
-    return File::Spec->catfile( get_impostor_dir(), basename($file) );
+    return File::Spec->catfile( get_impostor_directory(), basename($file) );
 }
 
-sub get_impostor_dir {
+sub get_impostor_directory {
     my $tmp_dir =
       File::Spec->catfile( Rex::Config->get_tmp_dir(), 'rex_hook_file_impostor' );
 
