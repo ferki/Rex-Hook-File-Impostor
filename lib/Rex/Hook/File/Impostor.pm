@@ -33,7 +33,7 @@ sub copy_file {
 sub get_impostor_for {
     my $path = shift;
 
-    return File::Spec->catfile( get_impostor_directory(), $path );
+    return File::Spec->join( get_impostor_directory(), $path );
 }
 
 sub get_impostor_directory {
@@ -44,7 +44,7 @@ sub get_impostor_directory {
 
     my $unique_id = $hasher->hexdigest();
 
-    my $impostor_directory = File::Spec->catfile( Rex::Config->get_tmp_dir(),
+    my $impostor_directory = File::Spec->join( Rex::Config->get_tmp_dir(),
         'rex_hook_file_impostor', $unique_id );
 
     mkdir $impostor_directory;
