@@ -15,9 +15,9 @@ use Sys::Hostname;
 
 our $VERSION = '9999';
 
-register_function_hooks { before => { file => \&copy_file, }, };
+register_function_hooks { before => { file => \&impostor_hook, }, };
 
-sub copy_file {
+sub impostor_hook {
     my ( $managed_path, @opts ) = @_;
 
     my $impostor_path = get_impostor_for($managed_path);
