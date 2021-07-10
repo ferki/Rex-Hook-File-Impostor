@@ -7,7 +7,7 @@ use 5.012;
 use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "execute Rex file management commands on a copy of the original file",
+  "ABSTRACT" => "execute Rex file management commands on a copy of the managed path",
   "AUTHOR" => "Ferenc Erki <erkiferenc\@gmail.com>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0

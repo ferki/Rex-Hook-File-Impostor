@@ -1,6 +1,6 @@
 package Rex::Hook::File::Impostor;
 
-# ABSTRACT: execute Rex file management commands on a copy of the original file
+# ABSTRACT: execute Rex file management commands on a copy of the managed path
 
 use 5.012;
 use warnings;
