@@ -4,6 +4,7 @@ Revision history for Rex-Hook-File-Impostor
  [API CHANGES]
 
  [BUG FIXES]
+ - Use full path of managed files
 
  [DOCUMENTATION]
 

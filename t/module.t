@@ -5,6 +5,7 @@ use warnings;
 use autodie;
 
 use Carp;
+use File::Path qw(remove_tree);
 use File::Temp;
 use Rex::Commands::File;
 use Rex::Hook::File::Impostor;
@@ -39,7 +40,7 @@ file_contains_like( $original_file, qr{$original_content}msx );
 file_contains_like( $impostor_file, qr{$impostor_content}msx );
 
 unlink $original_file, $impostor_file;
-rmdir $impostor_dir;
+remove_tree( $impostor_dir, { safe => 1 } );
 
 file_not_exists_ok($original_file);
 file_not_exists_ok($impostor_dir);

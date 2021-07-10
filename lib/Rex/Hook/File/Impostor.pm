@@ -21,6 +21,7 @@ sub copy_file {
 
     Rex::Logger::debug("Copying $original_file to $impostor_file");
 
+    mkdir dirname($impostor_file);
     cp $original_file, $impostor_file;
 
     return $impostor_file, @opts;
@@ -29,7 +30,7 @@ sub copy_file {
 sub get_impostor_for {
     my $file = shift;
 
-    return File::Spec->catfile( get_impostor_directory(), basename($file) );
+    return File::Spec->catfile( get_impostor_directory(), $file );
 }
 
 sub get_impostor_directory {
