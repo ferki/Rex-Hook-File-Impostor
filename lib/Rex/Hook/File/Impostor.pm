@@ -18,22 +18,22 @@ our $VERSION = '9999';
 register_function_hooks { before => { file => \&copy_file, }, };
 
 sub copy_file {
-    my ( $original_file, @opts ) = @_;
+    my ( $managed_path, @opts ) = @_;
 
-    my $impostor_file = get_impostor_for($original_file);
+    my $impostor_path = get_impostor_for($managed_path);
 
-    Rex::Logger::debug("Copying $original_file to $impostor_file");
+    Rex::Logger::debug("Copying $managed_path to $impostor_path");
 
-    mkdir dirname($impostor_file);
-    cp $original_file, $impostor_file;
+    mkdir dirname($impostor_path);
+    cp $managed_path, $impostor_path;
 
-    return $impostor_file, @opts;
+    return $impostor_path, @opts;
 }
 
 sub get_impostor_for {
-    my $file = shift;
+    my $path = shift;
 
-    return File::Spec->catfile( get_impostor_directory(), $file );
+    return File::Spec->catfile( get_impostor_directory(), $path );
 }
 
 sub get_impostor_directory {
@@ -44,11 +44,11 @@ sub get_impostor_directory {
 
     my $unique_id = $hasher->hexdigest();
 
-    my $tmp_dir = File::Spec->catfile( Rex::Config->get_tmp_dir(),
+    my $impostor_directory = File::Spec->catfile( Rex::Config->get_tmp_dir(),
         'rex_hook_file_impostor', $unique_id );
 
-    mkdir $tmp_dir;
-    return $tmp_dir;
+    mkdir $impostor_directory;
+    return $impostor_directory;
 }
 
 1;
