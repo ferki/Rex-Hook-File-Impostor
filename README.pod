@@ -10,7 +10,7 @@ Rex::Hook::File::Impostor - execute Rex file management commands on a copy of th
 
 =head1 VERSION
 
-version v0.1.1
+version v0.1.1.1
 
 =head1 SYNOPSIS
 
