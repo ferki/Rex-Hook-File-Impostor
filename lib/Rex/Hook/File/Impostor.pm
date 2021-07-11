@@ -35,7 +35,11 @@ sub impostor_hook {
 sub get_impostor_for {
     my $path = shift;
 
-    return File::Spec->join( get_impostor_directory(), $path );
+    my ( $volume, $directories, $file ) = File::Spec->splitpath($path);
+    $volume =~ s/://gmsx;
+
+    return File::Spec->join( get_impostor_directory(), $volume, $directories,
+        $file );
 }
 
 sub get_impostor_directory {
