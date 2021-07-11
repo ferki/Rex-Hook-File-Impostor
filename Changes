@@ -6,6 +6,7 @@ Revision history for Rex-Hook-File-Impostor
  [BUG FIXES]
  - Use full path of managed files
  - Use unique impostor directory
+ - Copy only existing files
 
  [DOCUMENTATION]
 

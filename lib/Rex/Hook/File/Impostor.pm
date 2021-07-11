@@ -22,10 +22,12 @@ sub impostor_hook {
 
     my $impostor_path = get_impostor_for($managed_path);
 
-    Rex::Logger::debug("Copying $managed_path to $impostor_path");
-
     mkdir dirname($impostor_path);
-    cp $managed_path, $impostor_path;
+
+    if ( is_file($managed_path) ) {
+        Rex::Logger::debug("Copying $managed_path to $impostor_path");
+        cp $managed_path, $impostor_path;
+    }
 
     return $impostor_path, @opts;
 }
