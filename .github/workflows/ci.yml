@@ -104,6 +104,7 @@ jobs:
       matrix:
         os:
           - ubuntu
+          - macos
         perl:
           - 5.12
           - latest
@@ -119,7 +120,7 @@ jobs:
           - os: macos
             perl: latest
             distribution: default
-            threaded: false
+            threaded: true
           - os: windows
             perl: latest
             distribution: strawberry
