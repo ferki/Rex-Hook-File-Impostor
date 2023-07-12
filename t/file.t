@@ -94,8 +94,7 @@ subtest 'ensure presence of an existing file' => sub {
 
     file_contains_like( $managed_file, qr{$original_content}msx );
 
-    file $managed_file,
-      ensure => 'present'; ## no critic ( ProhibitDuplicateLiteral )
+    file $managed_file, ensure => 'present'; ## no critic ( ProhibitDuplicateLiteral )
 
     file_exists_ok($managed_file);
     file_exists_ok($impostor_file);
