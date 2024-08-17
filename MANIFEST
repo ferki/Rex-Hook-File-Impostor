@@ -16,7 +16,7 @@ t/impostor_path.t
 weaver.ini
 xt/author/00-compile.t
 xt/author/critic.t
+xt/author/perltidy.t
 xt/author/pod-coverage.t
 xt/author/pod-syntax.t
-xt/perltidy.t
 xt/release/kwalitee.t
