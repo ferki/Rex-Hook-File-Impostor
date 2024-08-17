@@ -15,18 +15,18 @@ if ( !$ENV{AUTHOR_TESTING} ) {
 }
 
 my @files_to_exclude = qw(Makefile.PL .build blib local);
-my $xt_author_dir    = File::Spec->join( 'xt', 'author' );
+my $xt_dir           = File::Spec->join('xt');
 
 find(
     sub {
         return if $_ eq q(.);
         return if $_ eq 'perltidy.t';
 
-        my $filename = File::Spec->join( $xt_author_dir, $_ );
+        my $filename = File::Spec->join( $xt_dir, $_ );
 
         push @files_to_exclude, qr{\Q$filename\E}msx;
     },
-    $xt_author_dir,
+    $xt_dir,
 );
 
 run_tests( exclude => \@files_to_exclude );

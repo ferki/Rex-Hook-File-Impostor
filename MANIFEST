@@ -19,4 +19,5 @@ xt/author/critic.t
 xt/author/perltidy.t
 xt/author/pod-coverage.t
 xt/author/pod-syntax.t
+xt/release/check-manifest.t
 xt/release/kwalitee.t
