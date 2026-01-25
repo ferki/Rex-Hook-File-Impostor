@@ -1,8 +1,9 @@
 #!/usr/bin/env perl
 
-use 5.010;
+use 5.014;
 use warnings;
 use autodie;
+use re '/msx';
 
 use Carp;
 use File::Basename;
@@ -42,7 +43,7 @@ sub test_intermediate_state {
         dir_exists_ok( File::Spec->join( dirname($impostor_file) ) );
         file_exists_ok($impostor_file);
 
-        file_contains_like( $impostor_file, qr{$original_content}msx );
+        file_contains_like( $impostor_file, qr{$original_content} );
     }
 
     return $managed_path, %options;
@@ -92,15 +93,15 @@ subtest 'ensure presence of an existing file' => sub {
     file_exists_ok($managed_file);
     file_not_exists_ok($impostor_file);
 
-    file_contains_like( $managed_file, qr{$original_content}msx );
+    file_contains_like( $managed_file, qr{$original_content} );
 
     file $managed_file, ensure => 'present'; ## no critic ( ProhibitDuplicateLiteral )
 
     file_exists_ok($managed_file);
     file_exists_ok($impostor_file);
 
-    file_contains_like( $managed_file,  qr{$original_content}msx );
-    file_contains_like( $impostor_file, qr{$original_content}msx );
+    file_contains_like( $managed_file,  qr{$original_content} );
+    file_contains_like( $impostor_file, qr{$original_content} );
 
     cleanup();
 };
@@ -114,7 +115,7 @@ subtest 'create new file with content' => sub {
     file_not_exists_ok($managed_file);
     file_exists_ok($impostor_file);
 
-    file_contains_like( $impostor_file, qr{$impostor_content}msx );
+    file_contains_like( $impostor_file, qr{$impostor_content} );
 
     cleanup();
 };
@@ -125,15 +126,15 @@ subtest 'modify existing file' => sub {
     file_exists_ok($managed_file);
     file_not_exists_ok($impostor_file);
 
-    file_contains_like( $managed_file, qr{$original_content}msx );
+    file_contains_like( $managed_file, qr{$original_content} );
 
     file $managed_file, content => $impostor_content;
 
     file_exists_ok($managed_file);
     file_exists_ok($impostor_file);
 
-    file_contains_like( $managed_file,  qr{$original_content}msx );
-    file_contains_like( $impostor_file, qr{$impostor_content}msx );
+    file_contains_like( $managed_file,  qr{$original_content} );
+    file_contains_like( $impostor_file, qr{$impostor_content} );
 
     cleanup();
 };
@@ -144,7 +145,7 @@ subtest 'delete existing file' => sub {
     file_exists_ok($managed_file);
     file_not_exists_ok($impostor_file);
 
-    file_contains_like( $managed_file, qr{$original_content}msx );
+    file_contains_like( $managed_file, qr{$original_content} );
 
     file $managed_file, ensure => 'absent';
 
