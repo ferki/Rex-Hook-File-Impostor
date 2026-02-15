@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Perl
         id: perl
-        uses: shogo82148/actions-setup-perl@v1
+        uses: shogo82148/actions-setup-perl@v1.33.0
       - name: Get build timestamp
         run: echo BUILD_TIMESTAMP="$(date +%FT%T)" >> $GITHUB_ENV
       - name: Cache build dependencies
@@ -61,7 +61,7 @@ jobs:
       - name: Extract tarball
         run: tar xvf build.tar
       - name: Setup Perl
-        uses: shogo82148/actions-setup-perl@v1
+        uses: shogo82148/actions-setup-perl@v1.33.0
         with:
           install-modules-with: cpm
           install-modules-args: --with-develop
@@ -93,7 +93,7 @@ jobs:
       - name: Extract tarball
         run: tar xvf build.tar
       - name: Setup Perl
-        uses: shogo82148/actions-setup-perl@v1
+        uses: shogo82148/actions-setup-perl@v1.33.0
         with:
           install-modules-with: cpm
           install-modules-args: --with-develop
@@ -140,7 +140,7 @@ jobs:
       - name: Extract tarball
         run: tar xvf build.tar
       - name: Setup Perl
-        uses: shogo82148/actions-setup-perl@v1
+        uses: shogo82148/actions-setup-perl@v1.33.0
         with:
           perl-version: ${{ matrix.perl }}
           distribution: ${{ matrix.distribution }}
